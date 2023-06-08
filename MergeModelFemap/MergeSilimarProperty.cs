@@ -80,7 +80,13 @@ namespace MergeModelFemap
                                     int ret5 = p1.DIM4.CompareTo(p2.DIM4);
                                     if (ret5 == 0)
                                     {
-                                        return p1.DIM5.CompareTo(p2.DIM5);
+                                        int ret6 = p1.DIM5.CompareTo(p2.DIM5);
+                                        if (ret6 == 0)
+                                        {
+                                            return p1.DIM6.CompareTo(p2.DIM6);
+                                        }
+                                        else
+                                            return ret6;
                                     }
                                     else
                                         return ret5;
@@ -137,6 +143,11 @@ namespace MergeModelFemap
             cur = fApp.feCurve;
             sur = fApp.feSurface;
 
+            fSet.ID = 1000;
+            fSet.clear();
+            fSet.AddAll(femap.zDataType.FT_PROP);
+            fApp.feRenumber(femap.zDataType.FT_PROP, 1000, 1);
+
             fSet.ID = 1100;
             fSet.clear();
             fSet.AddAll(femap.zDataType.FT_ELEM);
@@ -149,6 +160,8 @@ namespace MergeModelFemap
                 System.Environment.Exit(1);
             }
             int fID = fSet.First();
+
+
             while (fID > 0)
             {
                 fProp.Get(fID);
@@ -202,7 +215,6 @@ namespace MergeModelFemap
                     }
                 }
             }
-
             MergeBeamProp();
 
             fSet.ID = 1;

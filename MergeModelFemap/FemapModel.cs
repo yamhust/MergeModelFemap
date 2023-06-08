@@ -37,7 +37,7 @@ namespace MergeModelFemap
             {
                 int[] ID = (int[])rangeID;
                 ModelInfor modelInfo = new ModelInfor();
-            const int t = 100;
+                const int t = 100;
                 
                 feModel = FemapModel.GetFemapModel();
                 se = feModel.feSet;

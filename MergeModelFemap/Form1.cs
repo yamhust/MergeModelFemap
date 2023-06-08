@@ -19,7 +19,7 @@ namespace MergeModelFemap
         public MergeFemapModel()
         {
             InitializeComponent();
-            tbPath.Text = "C:\\Users\\CAETech-Server\\Desktop\\06042023";
+            tbPath.Text = "";
             ckb1.Checked = true;
         }
 
@@ -60,9 +60,14 @@ namespace MergeModelFemap
                     IDarray = new int[] { currentModel.max_POINT_ID + 1, currentModel.max_CURVE_ID + 1,
                                           currentModel.max_SURFACE_ID + 1, currentModel.max_SOLID_ID + 1,
                                           currentModel.max_NODE_ID + 1 ,currentModel.max_ELEMENT_ID + 1,
-                                          currentModel.max_MATERIAL_ID, currentModel.max_PROPERTY_ID+1,
+                                          1, currentModel.max_PROPERTY_ID+1,
                                           currentModel.max_LAYER_ID+1,currentModel.max_GROUP_ID+1};
-                    
+
+                    //IDarray = new int[] { currentModel.max_POINT_ID + 1, currentModel.max_CURVE_ID + 1,
+                    //                      currentModel.max_SURFACE_ID + 1, currentModel.max_SOLID_ID + 1,
+                    //                      currentModel.max_NODE_ID + 1 ,currentModel.max_ELEMENT_ID + 1,
+                    //                      currentModel.max_MATERIAL_ID, currentModel.max_PROPERTY_ID+1,
+                    //                      currentModel.max_LAYER_ID+1,currentModel.max_GROUP_ID+1};
                 }
                 
                 currentModel = FemapModel.RenumberAllData(IDarray);
@@ -85,8 +90,8 @@ namespace MergeModelFemap
             for (int i = 0; i < fileModelneu.Count; i++)
             {
                 track.Start(zDataType.FT_ELEM);
-                fem.feFileReadNeutral2(0, pathAssem + "\\Model" + i + ".neu", true, true, true, true, true, false, 0);
                 track.clear();
+                fem.feFileReadNeutral2(0, pathAssem + "\\Model" + i + ".neu", true, true, true, true, true, false, 0);
                 track.Stop(zDataType.FT_ELEM);
                 fset.ID = 2000;
                 fset.clear();
